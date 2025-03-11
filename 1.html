@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @media only screen and (max-width: 600px) {
+    #choices {
+        margin-top: 20%;
+    }
+    #rock, #Paper, #scissors {
+        width: 70px;
+        height: 70px;
+        font-size: large;
+    }
+    #Submit {
+        width: 60px;
+    }
+} 
+    #Submit{
+        border-radius: 20px;
+        height: 25px;
+        width: 80px;
+        cursor: pointer;
+    }
+    #choices{
+        text-align: center;
+        margin-top: 8%;
+    }
+    #rock,#Paper,#scissors{ 
+        border-radius: 25px;
+        width: 90px;
+        height: 90px;
+        padding: 5px;
+        margin-right: 2%;
+        font-size: xxx-large;
+        position: relative;
+    }
+    #Reset {
+        
+        width: 98px;
+        height: 35px;
+        border-radius: 50px;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        color: rgb(15, 130, 92);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+}
+
+    #Creset {
+    position: absolute; 
+    left: 10px; 
+    top: 50%; 
+    width: 98px;
+    height: 35px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(15, 130, 92);
+}
+
+#Preset {
+    position: absolute; 
+    right: 10px; 
+    top: 50%;
+ 
+    width: 98px;
+    height: 35px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(15, 130, 92);
+}
+
+    #body{
+        color: blue;
+    }
+    #result,#cresult{
+        text-align: center;
+        color: rgb(255, 179, 0);
+    }
+    #score{
+        text-align: center;
+        margin-top: 5%;
+    }
+    #cscore,#pscore{
+        margin-left: 22%;
+        margin-top: -15px;
+        position: relative;
+        color: rgb(0, 247, 255);
+        
+    }
+    #outcome{
+        text-align: center;
+    }
+    button:hover{
+        background-color: rgb(218, 218, 218);
+        cursor: pointer;
+    }
+    button:active{
+        background-color: rgb(239, 226, 226);
+    }
+    body{
+        background-color: rgb(128, 128, 255);
+    }
+</style>
+<script>
+    let cscore = 0;
+    let score = 0;
+    let player = "Player";
+function enter_event(){
+    if(event.key === "Enter"){
+        submit();
+    }
+}
+function submit() {
+    player = document.getElementById("name").value.trim() || "Player";
+    document.getElementById("name").value = ""; 
+}
+    function Creset(){
+        cscore =  0;
+        document.getElementById("cscore").innerHTML = cscore;  
+    }
+    function Preset(){
+        score =  0;
+        document.getElementById("pscore").innerHTML = score;  
+    }
+    function Reset(){
+        cscore =  0;
+        score = 0;
+        document.getElementById("cscore").innerHTML = cscore;  
+        document.getElementById("pscore").innerHTML = cscore;  
+        document.getElementById("cresult").innerHTML = "";
+        document.getElementById("result").innerHTML= "";
+        document.getElementById("outcome").innerHTML = "";
+    }
+    function rock(){
+        let a = player + " has choosen Rock"
+        document.getElementById("result").innerHTML= a
+        const comp = ["rock", "paper", "scissor"];
+        comp_choice = comp[Math.floor(Math.random() *comp.length)]
+        document.getElementById("cresult").innerHTML = "Computer has choosen " + comp_choice
+        if ( comp_choice === "rock" ) {
+            document.getElementById("outcome").innerHTML = "It's a draw!!";
+            document.getElementById("outcome").style.color = "black"
+    } else if( comp_choice === "paper"){
+        document.getElementById("outcome").innerHTML = "You lose! Computer wins!";
+        document.getElementById("outcome").style.color = "red"
+        cscore = parseInt(cscore) || 0;
+        cscore += 1;
+        document.getElementById("cscore").innerHTML = cscore;
+    }
+    else{
+        document.getElementById("outcome").innerHTML = player + " win!!";
+        document.getElementById("outcome").style.color = "greenyellow"
+        score = parseInt(score) || 0;
+        score += 1;
+        document.getElementById("pscore").innerHTML = score;
+    }
+    }
+    function paper(){
+        let a =  player + " has choosen Paper"
+        document.getElementById("result").innerHTML= a
+        comp = ["rock", "paper", "scissor"];
+        comp_choice = comp[Math.floor(Math.random() *3)]
+        document.getElementById("cresult").innerHTML = "Computer has choosen " + comp_choice
+        if ( comp_choice === "paper" ) {
+            document.getElementById("outcome").innerHTML = "It's a draw!!";
+            document.getElementById("outcome").style.color = "black"
+    } else if( comp_choice === "scissor"){
+        document.getElementById("outcome").innerHTML = "You lose! Computer wins!";
+        document.getElementById("outcome").style.color = "red"
+        cscore = parseInt(cscore) || 0;
+        cscore += 1;
+        document.getElementById("cscore").innerHTML = cscore;
+    }
+    else{
+        document.getElementById("outcome").innerHTML = player + " win!!";
+        document.getElementById("outcome").style.color = "greenyellow"
+        score = parseInt(score) || 0;
+        score += 1;
+        document.getElementById("pscore").innerHTML = score;
+    }
+    }
+    function scissors(){
+        let a = player + " have choosen Scissors"
+        document.getElementById("result").innerHTML= a
+        comp = ["rock", "paper", "scissor"];
+        comp_choice = comp[Math.floor(Math.random() *3)]
+        document.getElementById("cresult").innerHTML = "Computer has choosen " + comp_choice
+        if (comp_choice === "scissor") { // Match logic term
+            document.getElementById("outcome").innerHTML = "It's a draw!!";
+        }else if( comp_choice === "rock"){
+            document.getElementById("outcome").innerHTML = "You lose! Computer wins!";
+            document.getElementById("outcome").style.color = "red"
+            cscore = parseInt(cscore) || 0;
+            cscore += 1;
+            document.getElementById("cscore").innerHTML = cscore;
+    }
+    else{
+        document.getElementById("outcome").innerHTML = player +" win!!";
+        document.getElementById("outcome").style.color = "greenyellow"
+        score = parseInt(score) || 0;
+        score += 1;
+        document.getElementById("pscore").innerHTML = score;
+        
+    }
+    }
+</script>
+<body>
+    <div id="body">
+        
+        <div id="pname">
+            <label for="name" style="color: black; cursor: pointer;" aria-label="Input for player name">Enter your name:</label>
+            <input type="text" id="name" placeholder=" Your Name" onkeydown="enter_event()">
+            <input type="Submit" id="Submit" onclick="submit()">
+        </div>
+        <div id="score">
+            player score:<h5 id="pscore">0</h5>
+            computer score:<h5 id="cscore">0</h5>
+        </div>
+            <h1 id="outcome"></h1>
+        <div id="choices">
+            <h1 id="result"></h1>
+            <button value="Rock" id="rock" aria-label="Rock" onclick="rock()">🪨</button>
+            <button value="Paper" id="Paper" aria-label="Paper" onclick="paper()">✂️</button>
+            <button value="scissors" id="scissors" aria-label="Scissors" onclick="scissors()">📄</button>
+        </div>
+        <h1 id="cresult"></h1>
+        <button value="Creset" id="Creset" onclick="Creset()">Reset Computer</button>
+        <button value="Reset" id="Reset" onclick="Reset()">Reset</button>
+        <button value="Preset" id="Preset" onclick="Preset()">Reset player</button>
+        <br>
+    </div>
+</body>
+</html>
